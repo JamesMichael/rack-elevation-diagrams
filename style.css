@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #1A202C;
+
+  font-family: sans-serif;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1px;
+}
+
+#editor-pane, #preview-pane {
+  background-color: white;
+  height: 100%;
+  max-height: 100vh;
+  overflow: auto;
+  height: 100vh;
+}
+
+#editor-pane {
+  display: flex;
+  flex-direction: column;
+  overflow:none;
+  height: 100%;
+}
+
+#editor {
+  flex: 1;
+  padding: 1rem;
+
+  border: none;
+  border-radius: none;
+  resize: none;
+  outline: none;
+  font-size: 12pt;
+}
+
+#preview-pane .preview {
+  display: flex;
+}
+
+#preview-pane .preview svg {
+  flex: 0 0 auto;
+}
+
+.toolbar {
+  background-color: #F7FAFC;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #718096;
+}
+
+.toolbar .label {
+  margin: 0 0.5rem;
+}
+
+.toolbar button {
+  border: none;
+  background-color: white;
+  border: 1px solid #718096;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-weight: 600;
+  border-radius: 0.3rem;
+}
+
+.toolbar button:hover {
+  background-color: #EDF2F7;
+}
+
+.toolbar button:active {
+  background-color: #E2E8F0;
+}
+
+.toolbar .button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toolbar .button-group:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.toolbar .button-group .label {
+  margin-top: 0.3rem;
+  font-size: 10pt
+}
+
+.toolbar .button-group .buttons {
+  display: flex;
+}
+
+.toolbar .button-group button:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.toolbar .button-group button:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.toolbar .button-group button {
+  flex: 1;
+  margin: 0;
+}

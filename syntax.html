@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>RackML Syntax</title>
+  </head>
+  <body>
+    <h1>RackML Syntax</h1>
+
+    <p>A <em>RackML</em> document must have an outer <tt>&lt;racks&gt;</tt> element.</p>
+
+    <h2><tt>&lt;racks&gt;</tt></h2>
+
+    <p>The <tt>&lt;racks&gt;</tt> element contains zero or more <tt>&lt;racks&gt;</tt> elements.</p>
+
+    <h2><tt>&lt;rack&gt;</tt></h2>
+
+    <p>A <tt>&lt;rack&gt;</tt> element may contain the following attributes:</p>
+
+    <dl>
+      <dt><tt>height</tt></dt>
+      <dd>The height, in rack units, of this rack</dd>
+
+      <dt><tt>name</tt></dt>
+      <dd>The name of the rack. Displayed above the rack.</dd>
+    </dl>
+
+    <h2><tt>&lt;rack&gt;</tt> children</h2>
+
+    <p>A <tt>&lt;rack&gt; element may contain any of the following elements:</p>
+
+    <dl>
+      <dt>&lt;cables&gt;</dt>
+      <dd>Represents a cable management system</dd>
+
+      <dt>&lt;firewall&gt;</dt>
+      <dd>Represents a firewall</dd>
+
+      <dt>&lt;gap&gt;</dt>
+      <dd>Empty space</dd>
+
+      <dt>&lt;keyboard&gt;</dt>
+      <dd>Represents a keyboard</dd>
+
+      <dt>&lt;kvm&gt;</dt>
+      <dd>Represents a KVM-switch</dd>
+
+      <dt>&lt;monitor&gt;</dt>
+      <dd>Represents a VDU</dd>
+
+      <dt>&lt;patch&gt;</dt>
+      <dd>Represents a patch panel</dd>
+
+      <dt>&lt;pdu&gt;</dt>
+      <dd>Represents a power distribution unit</dd>
+
+      <dt>&lt;san&gt;</dt>
+      <dd>Represents a SAN server</dd>
+
+      <dt>&lt;server&gt;</dt>
+      <dd>Represents a compute server</dd>
+
+      <dt>&lt;switch&gt;</dt>
+      <dd>Represents a networking switch</dd>
+
+      <dt>&lt;ups&gt;</dt>
+      <dd>Represents an uninterruptable power supply</dd>
+    </dl>
+
+    Each of these elements may include the following attributes:
+
+    <dl>
+      <dt><tt>at</tt></dt>
+      <dd>The lowest rack unit the device occupies.</dd>
+
+      <dt><tt>height</tt></dt>
+      <dd>The height, in rack units, of the device</dd>
+
+      <dt><tt>href</tt></dt>
+      <dd>A URL for additional information. The rack element will be clickable in the renderable SVG.</dd>
+    </dl>
+  </body>
+</html>
+

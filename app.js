@@ -121,6 +121,8 @@ function buildSVG(racks, parameters) {
         `)
     );
 
+    svg.appendChild(patternEmpty());
+
     const baseHREF = racks.getAttribute('base');
 
     let xOffset = margin;
@@ -175,7 +177,7 @@ function drawRack(rack, params) {
       y: params.margin,
       width: params.rackWidth,
       height: params.rackHeight * params.unitHeight,
-      fill: '#4A5568',
+      fill: 'url(#pattern-empty)',
       stroke: 'black',
     }),
   );
@@ -623,4 +625,24 @@ function symbolUPS() {
     fill: 'black',
     stroke: 'none',
   });
+}
+
+function patternEmpty() {
+  return createSVGElement('pattern', {
+    id: 'pattern-empty',
+    patternUnits: 'userSpaceOnUse',
+    width: 16,
+    height: 16,
+  }, createSVGElement('path', {
+    d: `
+      M -4 4
+      l 8 -8
+      M 0 16
+      l 16 -16
+      M 12 20
+      l 8 -8
+    `,
+    stroke: '#f4f4f4',
+    'stroke-width': 5,
+  }));
 }

@@ -208,13 +208,13 @@ function drawRack(rack, params) {
     });
 
     const link = node.getAttribute('href');
-      let container = document.createDocumentFragment();
-      if (link) {
-        container = createSVGElement('a', {
-          href: link,
-        }, el);
-      } else {
-        container.appendChild(el);
+    let container = document.createDocumentFragment();
+    if (link) {
+      container = createSVGElement('a', {
+        href: link,
+      }, el);
+    } else {
+      container.appendChild(el);
     }
 
     const text = document.createTextNode(node.textContent);

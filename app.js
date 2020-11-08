@@ -37,6 +37,7 @@ const COLORSCHEMES = {
     'san':      '#c7ceea',
     'server':   '#c7ceea',
     'switch':   '#ff9aa2',
+    'tape':     '#c7ceea',
     'ups':      '#b5ead7',
   },
 };
@@ -378,6 +379,9 @@ function drawRackDevice(node, params) {
     case 'switch':
       icon = symbolSwitch();
       break;
+    case 'tape':
+      icon = symbolTapeDrive();
+      break;
     case 'ups':
       icon = symbolUPS();
       break;
@@ -632,6 +636,43 @@ function symbolSwitch() {
     `,
     fill: '#555',
   });
+}
+
+function symbolTapeDrive() {
+  const icon = document.createDocumentFragment();
+  icon.appendChild(
+    createSVGElement('rect', {
+      width: 24,
+      height: 15,
+      x: 6,
+      y: 7,
+      fill: '#555',
+    })
+  );
+
+  icon.appendChild(
+    createSVGElement('circle', {
+      cx: 13,
+      cy: 15,
+      r: 3,
+      stroke: '#ccc',
+      fill: '#555',
+      'stroke-width': 2,
+    })
+  );
+
+  icon.appendChild(
+    createSVGElement('circle', {
+      cx: 23,
+      cy: 15,
+      r: 3,
+      stroke: '#ccc',
+      fill: '#555',
+      'stroke-width': 2,
+    })
+  );
+
+  return icon
 }
 
 function symbolUPS() {

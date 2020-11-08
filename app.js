@@ -121,11 +121,14 @@ function buildSVG(racks, parameters) {
         `)
     );
 
+    const baseHREF = racks.getAttribute('base');
+
     let xOffset = margin;
     for (const rack of racks.children) {
         const rackHeight = rack.getAttribute('height') || DEFAULT_RACK_HEIGHT_UNITS;
 
         const dom = drawRack(rack, {
+            baseHREF:   baseHREF,
             rackWidth:  rackWidth,
             rackHeight: rackHeight,
             unitHeight: unitHeight,
@@ -210,8 +213,9 @@ function drawRack(rack, params) {
     const link = node.getAttribute('href');
     let container = document.createDocumentFragment();
     if (link) {
+      const url = params.baseHREF ? new URL(link, params.baseHREF) : link;
       container = createSVGElement('a', {
-        href: link,
+        href: url,
       }, el);
     } else {
       container.appendChild(el);

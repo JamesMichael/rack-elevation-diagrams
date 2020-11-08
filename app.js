@@ -94,7 +94,7 @@ function buildSVG(racks, parameters) {
 
     let maxRackHeight = 0;
     for (const rack of racks.children) {
-        const rackHeight = rack.getAttribute('height') || DEFAULT_RACK_HEIGHT;
+        const rackHeight = rack.getAttribute('height') || DEFAULT_RACK_HEIGHT_UNITS;
         if (rackHeight > maxRackHeight) {
             maxRackHeight = rackHeight;
         }
@@ -123,7 +123,7 @@ function buildSVG(racks, parameters) {
 
     let xOffset = margin;
     for (const rack of racks.children) {
-        const rackHeight = rack.getAttribute('height') || DEFAULT_RACK_HEIGHT;
+        const rackHeight = rack.getAttribute('height') || DEFAULT_RACK_HEIGHT_UNITS;
 
         const dom = drawRack(rack, {
             rackWidth:  rackWidth,
@@ -245,7 +245,7 @@ function builder(editor) {
     const preview = document.querySelector(PREVIEW_SELECTOR);
     preview.innerHTML = '';
     preview.appendChild(svg);
-  } catch(err) { console.err(err) }
+  } catch(err) { console.error(err) }
 }
 
 document.addEventListener('DOMContentLoaded', ev => {

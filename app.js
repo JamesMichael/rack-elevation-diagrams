@@ -116,7 +116,7 @@ function buildSVG(racks, parameters) {
     svg.appendChild(
         createSVGElement('style', {}, `
             a:hover {
-                filter: saturate(4);
+                filter: brightness(80%);
             }
         `)
     );

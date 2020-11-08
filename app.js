@@ -195,42 +195,15 @@ function drawRack(rack, params) {
       continue;
     }
 
-    let color = 'white';
-    color = DEFAULT_COLORS[ node.tagName ] || 'white';
-    if (node.getAttribute('color')) {
-      color = node.getAttribute('color');
-    }
-
-    const el = createSVGElement('rect', {
-      x: 0,
-      y: rackBottomY - (( at + height ) * params.unitHeight),
-      width: params.rackWidth,
-      height: height * params.unitHeight,
-      fill: color,
-      stroke: 'black',
-    });
-
-    const link = node.getAttribute('href');
-    let container = document.createDocumentFragment();
-    if (link) {
-      const url = params.baseHREF ? new URL(link, params.baseHREF) : link;
-      container = createSVGElement('a', {
-        href: url,
-      }, el);
-    } else {
-      container.appendChild(el);
-    }
-
-    const text = document.createTextNode(node.textContent);
-    const rackName = createSVGElement('text', {
-      x:                    (params.rackWidth / 2),
-      y:                    rackBottomY - (( at + height ) * params.unitHeight) + ((height * params.unitHeight) / 2),
-      'text-anchor':       'middle',
-      'dominant-baseline': 'central',
-      'font-family':       'sans-serif',
-    }, node.textContent);
-    container.appendChild(rackName);
-    dom.appendChild(container);
+    const pos = rackBottomY - ((at+height) * params.unitHeight);
+    dom.appendChild(
+      createSVGElement('g', {
+        transform: `translate(0, ${pos})`,
+      }, drawRackDevice(node, {
+        height: height * params.unitHeight,
+        width: params.rackWidth,
+      })),
+    );
 
     currentNode = at + height;
   }
@@ -328,4 +301,326 @@ function downloadFile(url, filename) {
   a.setAttribute('target', '_blank');
 
   a.dispatchEvent(ev);
+}
+
+// Draw a single rack entry at 0,0 with the given width and height in pixels
+function drawRackDevice(node, params) {
+  const {
+    height,
+    width,
+  } = params;
+
+  let color = 'white';
+  color = DEFAULT_COLORS[ node.tagName ] || 'white';
+  if (node.getAttribute('color')) {
+    color = node.getAttribute('color');
+  }
+
+  let container = document.createDocumentFragment();
+  container.appendChild(
+    createSVGElement('rect', {
+      x:      0,
+      y:      0,
+      width:  width,
+      height: height,
+      fill:   color,
+      stroke: 'black',
+    }),
+  );
+
+  const text = document.createTextNode(node.textContent);
+  container.appendChild(
+    createSVGElement('text', {
+      x:                    width / 2,
+      y:                    height / 2,
+      'text-anchor':       'middle',
+      'dominant-baseline': 'central',
+      'font-family':       'sans-serif',
+    }, node.textContent),
+  );
+
+  let icon;
+  switch (node.tagName) {
+    case 'cables':
+      icon = symbolCables();
+      break;
+    case 'firewall':
+      icon = symbolFirewall();
+      break;
+    case 'patch':
+      icon = symbolPatchPanel();
+      break;
+    case 'pdu':
+      icon = symbolPDU();
+      break;
+    case 'san':
+      icon = symbolSAN();
+      break;
+    case 'server':
+      icon = symbolServer();
+      break;
+    case 'switch':
+      icon = symbolSwitch();
+      break;
+    case 'ups':
+      icon = symbolUPS();
+      break;
+  }
+  if (icon) {
+    container.appendChild(icon);
+  }
+
+  const link = node.getAttribute('href');
+  if (link) {
+    const url = params.baseHREF ? new URL(link, params.baseHREF) : link;
+    container = createSVGElement('a', {
+      href: url,
+    }, container);
+  }
+
+  return container;
+}
+
+function symbolCables() {
+  return createSVGElement('path', {
+    d: `
+      M 10 7
+      l -5 5
+      l 5 5
+
+      m 3 -5
+      a 1,1 0 1,1 -2,0
+      a 1,1 0 1,1 2,0
+
+      m 5 0
+      a 1,1 0 1,1 -2,0
+      a 1,1 0 1,1 2,0
+
+      m 5 0
+      a 1,1 0 1,1 -2,0
+      a 1,1 0 1,1 2,0
+
+      m 1 -5
+      l 5 5
+      l -5 5
+    `,
+    fill: 'none',
+    stroke: 'black',
+    'stroke-width': 2,
+  });
+}
+
+function symbolFirewall() {
+  return createSVGElement('path', {
+    d: `
+      M 7 7
+      h 15
+      v 12
+      h -15
+      z
+
+      m 0 4
+      h 15
+
+      m 0 4
+      h -15
+
+      M 7 7
+      m 4 0
+      v 4
+
+      m 7 0
+      v -4
+
+      m -4 4
+      v 4
+
+      m -3 0
+      v 4
+
+      m 7 0
+      v -4
+    `,
+    fill: 'none',
+    stroke: 'black',
+    'stroke-width': 2,
+  });
+}
+
+function symbolPatchPanel() {
+  return createSVGElement('g', {},
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 7,
+      y: 7,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 14,
+      y: 7,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 21,
+      y: 7,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 28,
+      y: 7,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 7,
+      y: 14,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 14,
+      y: 14,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 21,
+      y: 14,
+    }),
+    createSVGElement('rect', {
+      width: 4,
+      height: 4,
+      x: 28,
+      y: 14,
+    }),
+  );
+}
+
+function symbolPDU() {
+  return createSVGElement('path', {
+    d: `
+      M 14 7
+      v 7
+      m 3 -5
+      a 6 6 240 1 1 -5 0
+    `,
+    stroke: 'black',
+    fill: 'none',
+    'stroke-width': 2,
+    'stroke-linecap': 'round',
+  });
+}
+
+function symbolSAN() {
+  return createSVGElement('path', {
+    d: `
+      M 7 7
+      v 18
+      h 5
+      v -18
+      h -5
+
+      m 7 0
+      v 18
+      h 5
+      v -18
+      h -5
+
+      m 7 0
+      v 18
+      h 5
+      v -18
+      h -5
+    `,
+    stroke: 'none',
+    fill: 'black',
+    'fill-rule': 'evenodd',
+  });
+}
+
+function symbolServer() {
+  return createSVGElement('path', {
+    d: `
+      M 7 7
+      h 20
+      v 7
+      h -20
+      v -7
+
+      m 0 8
+      h 20
+      v 7
+      h -20
+      v -7
+
+      M 25 10
+      a 2,2 0 1,1 -4,0
+      a 2,2 0 1,1 4,0
+
+      M 25 18
+      a 2,2 0 1,1 -4,0
+      a 2,2 0 1,1 4,0
+    `,
+    stroke: 'none',
+    fill: 'black',
+    'fill-rule': 'evenodd',
+  });
+}
+
+function symbolSwitch() {
+  return createSVGElement('path', {
+    d: `
+      M 15 5
+      h 4
+      v -2.5
+      l 4 4
+      l -4 4
+      v -2.5
+      h -4
+
+      m -2 0
+      h -4
+      v -2.5
+      l -4 4
+      l 4 4
+      v -2.5
+      h 4
+
+      m 2 3
+      h 4
+      v -2.5
+      l 4 4
+      l -4 4
+      v -2.5
+      h -4
+
+      m -2 1
+      h -4
+      v -2.5
+      l -4 4
+      l 4 4
+      v -2.5
+      h 4
+    `,
+  });
+}
+
+function symbolUPS() {
+  return createSVGElement('path', {
+    d: `
+      M 12 7
+      h 6
+      l -3 5
+      h 3
+      l -8 10
+      l 2 -7
+      h -3
+    `,
+    fill: 'black',
+    stroke: 'none',
+  });
 }

@@ -15,16 +15,30 @@ const DEFAULT_SVG_MARGIN          = 25;
 
 const SVG_NS                      = 'http://www.w3.org/2000/svg';
 
-const DEFAULT_COLORS = {
-    ups: '#38A169',
-    pdu: '#38A169',
-    firewall: '#F56565',
-    switch: '#FC8181',
-    blank: '#E2E8F0',
-    patch: '#FAF089',
-    cables: '#F6AD55',
-    server: '#63B3ED',
-    san: '#4FD1C5',
+const COLORSCHEMES = {
+  'default': {
+    '_default': 'white',
+    'blank':    '#e2e8f0',
+    'cables':   '#f6ad55',
+    'firewall': '#f56565',
+    'patch':    '#faf089',
+    'pdu':      '#38a169',
+    'san':      '#4fd1c5',
+    'server':   '#63b3ed',
+    'switch':   '#fc8181',
+    'ups':      '#38a169',
+  },
+  'pastel': {
+    '_default': '#f4f4f4',
+    'cables':   '#ffdac1',
+    'firewall': '#ff9aa2',
+    'patch':    '#ffdac1',
+    'pdu':      '#b5ead7',
+    'san':      '#c7ceea',
+    'server':   '#c7ceea',
+    'switch':   '#ff9aa2',
+    'ups':      '#b5ead7',
+  },
 };
 
 const EXPORT_PNG_BUTTON  = '#export-png';
@@ -116,7 +130,7 @@ function buildSVG(racks, parameters) {
     svg.appendChild(
         createSVGElement('style', {}, `
             a:hover {
-                filter: brightness(80%);
+                filter: brightness(90%);
             }
         `)
     );
@@ -313,7 +327,7 @@ function drawRackDevice(node, params) {
   } = params;
 
   let color = 'white';
-  color = DEFAULT_COLORS[ node.tagName ] || 'white';
+  color = COLORSCHEMES.pastel[ node.tagName ] || COLORSCHEMES.pastel._default;
   if (node.getAttribute('color')) {
     color = node.getAttribute('color');
   }

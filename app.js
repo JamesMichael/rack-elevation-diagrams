@@ -400,7 +400,7 @@ function drawRackDevice(node, params) {
 function symbolCables() {
   return createSVGElement('path', {
     d: `
-      M 10 7
+      M 12 7
       l -5 5
       l 5 5
 
@@ -421,7 +421,7 @@ function symbolCables() {
       l -5 5
     `,
     fill: 'none',
-    stroke: 'black',
+    stroke: '#555',
     'stroke-width': 2,
   });
 }
@@ -429,36 +429,36 @@ function symbolCables() {
 function symbolFirewall() {
   return createSVGElement('path', {
     d: `
-      M 7 7
-      h 15
+      M 8 6.5
+      h 20
       v 12
-      h -15
+      h -20
       z
 
       m 0 4
-      h 15
+      h 20
 
       m 0 4
-      h -15
+      h -20
 
       M 7 7
-      m 4 0
+      m 7 0
       v 4
 
-      m 7 0
+      m 8 0
       v -4
 
       m -4 4
       v 4
 
-      m -3 0
+      m -4 0
       v 4
 
-      m 7 0
+      m 8 0
       v -4
     `,
     fill: 'none',
-    stroke: 'black',
+    stroke: '#555',
     'stroke-width': 2,
   });
 }
@@ -466,48 +466,56 @@ function symbolFirewall() {
 function symbolPatchPanel() {
   return createSVGElement('g', {},
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 7,
       y: 7,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 14,
       y: 7,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 21,
       y: 7,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 28,
       y: 7,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 7,
       y: 14,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 14,
       y: 14,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 21,
       y: 14,
     }),
     createSVGElement('rect', {
+      fill: '#555',
       width: 4,
       height: 4,
       x: 28,
@@ -519,12 +527,12 @@ function symbolPatchPanel() {
 function symbolPDU() {
   return createSVGElement('path', {
     d: `
-      M 14 7
+      M 17 5
       v 7
       m 3 -5
-      a 6 6 240 1 1 -5 0
+      a 6 6 240 1 1 -6 0
     `,
-    stroke: 'black',
+    stroke: '#555',
     fill: 'none',
     'stroke-width': 2,
     'stroke-linecap': 'round',
@@ -535,25 +543,25 @@ function symbolSAN() {
   return createSVGElement('path', {
     d: `
       M 7 7
-      v 18
+      v 15
       h 5
-      v -18
+      v -15
       h -5
 
       m 7 0
-      v 18
+      v 15
       h 5
-      v -18
+      v -15
       h -5
 
       m 7 0
-      v 18
+      v 15
       h 5
-      v -18
+      v -15
       h -5
     `,
     stroke: 'none',
-    fill: 'black',
+    fill: '#555',
     'fill-rule': 'evenodd',
   });
 }
@@ -561,7 +569,7 @@ function symbolSAN() {
 function symbolServer() {
   return createSVGElement('path', {
     d: `
-      M 7 7
+      M 7 5
       h 20
       v 7
       h -20
@@ -573,16 +581,16 @@ function symbolServer() {
       h -20
       v -7
 
-      M 25 10
+      M 25 8
       a 2,2 0 1,1 -4,0
       a 2,2 0 1,1 4,0
 
-      M 25 18
+      M 25 16
       a 2,2 0 1,1 -4,0
       a 2,2 0 1,1 4,0
     `,
     stroke: 'none',
-    fill: 'black',
+    fill: '#555',
     'fill-rule': 'evenodd',
   });
 }
@@ -590,45 +598,46 @@ function symbolServer() {
 function symbolSwitch() {
   return createSVGElement('path', {
     d: `
-      M 15 5
-      h 4
+      M 19 5
+      h 6
       v -2.5
       l 4 4
       l -4 4
       v -2.5
-      h -4
-
-      m -2 0
-      h -4
-      v -2.5
-      l -4 4
-      l 4 4
-      v -2.5
-      h 4
-
-      m 2 3
-      h 4
-      v -2.5
-      l 4 4
-      l -4 4
-      v -2.5
-      h -4
+      h -6
 
       m -2 1
-      h -4
+      h -6
       v -2.5
       l -4 4
       l 4 4
       v -2.5
-      h 4
+      h 6
+
+      m 2 2
+      h 6
+      v -2.5
+      l 4 4
+      l -4 4
+      v -2.5
+      h -6
+
+      m -2 1
+      h -6
+      v -2.5
+      l -4 4
+      l 4 4
+      v -2.5
+      h 6
     `,
+    fill: '#555',
   });
 }
 
 function symbolUPS() {
   return createSVGElement('path', {
     d: `
-      M 12 7
+      M 15 7
       h 6
       l -3 5
       h 3
@@ -636,7 +645,7 @@ function symbolUPS() {
       l 2 -7
       h -3
     `,
-    fill: 'black',
+    fill: '#555',
     stroke: 'none',
   });
 }
